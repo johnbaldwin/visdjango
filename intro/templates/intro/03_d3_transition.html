@@ -1,0 +1,72 @@
+
+{% extends 'visdjango/base.html' %}
+{% load staticfiles %}
+{% block title %}VisDjango - Introductory Example{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <style>
+
+    div.example {
+      background-color: #000000;
+      margin: 5px;
+      font-size: 20px;
+      color: #f2dede;
+      padding: 10px;
+      width: 300px;
+    }
+
+  </style>
+  <script src="{% static 'd3_v3.4.11/d3.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="demo-header">This example demonstrates transition in D3</h1>
+
+  <input id="red_example" type="button" value="Red background" onclick="go_red();" />
+  <input id="blue_example" type="button" value="Black text with blue background" onclick="go_blue();" />
+  <input id="reload_page" type="button" value="Reload page" onclick="window.location.reload(false);" />
+
+  <div class="example">This is our first div</div>
+  <div class="example">This is our second div</div>
+
+  <script type="text/javascript">
+    var go_red = function() {
+      d3.selectAll("div.example").transition().duration(2000).style("background-color","red");
+    }
+    var go_blue = function() {
+      d3.selectAll("div.example").transition().duration(1000)
+          .style("background-color","lightblue")
+          .style("color","black")
+          .style("height","100px")
+          .style("padding","20px");
+    }
+
+    window.onload = function() {
+      prettyPrint();
+    }
+  </script>
+
+  <div class="code-section">
+    <h1>Selection with transition statements</h1>
+    <pre class="prettyprint">
+      // Basic transition example
+      d3.selectAll("div.example").transition().duration(2000).style("background-color","red");
+
+      // Chained transition
+      d3.selectAll("div.example").transition().duration(1000)
+          .style("background-color","lightblue")
+          .style("color","black")
+          .style("height","100px")
+          .style("padding","20px");
+    </pre>
+  </div>
+  <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      <li><a href="https://github.com/mbostock/d3/wiki/Transitions">D3 wiki - Transitions</a> (github.com)</li>
+      <li><a href="http://bost.ocks.org/mike/transition/">Working with Transitions</a> (bost.ocks.org)</li>
+
+    </ul>
+  </div>
+{% endblock %}

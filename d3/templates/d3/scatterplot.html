@@ -1,0 +1,28 @@
+{# D3 Example 3 page #}
+{% extends 'd3/base.html' %}
+{% load staticfiles %}
+{% block title %}Scatter Plot with D3{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <link href="{% static 'd3/css/scatterplot.css' %}" rel="stylesheet">
+  <script src="{% static 'd3/js/scatterplot.js' %}"></script>
+{% endblock %}
+
+{%  block content %}
+  <div class="page-header">
+    <h1>Scatterplot with D3</h1>
+  </div>
+
+  <div id="scatterplot"></div>
+
+  <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      <li>Sourcen: <a href="http://bl.ocks.org/bunkat/2595950">http://bl.ocks.org/bunkat/2595950</a></li>
+      <li><a href="http://bl.ocks.org/mbostock/3887118">http://bl.ocks.org/mbostock/3887118</a></li>
+    </ul>
+  </div>
+
+
+{% endblock %}

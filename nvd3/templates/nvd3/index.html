@@ -1,0 +1,12 @@
+{% extends 'nvd3/base.html' %}
+{% load staticfiles %}
+{% block title %}NVD3 Examples{% endblock %}
+
+{%  block content %}
+{# TODO: layout the demos #}
+  <ul>
+    <li><a href="{% url 'nvd3-piechart' %}">Piechart</a></li>
+    <li><a href="{% url 'nvd3-barchart-1' %}">Bar chart with embedded data</a></li>
+    <li><a href="{% url 'nvd3-barchart-2' %}">Bar chart with external data</a></li>
+  </ul>
+{% endblock %}

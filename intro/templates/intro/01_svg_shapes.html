@@ -1,0 +1,67 @@
+{% extends 'visdjango/base.html' %}
+{% load staticfiles %}
+{% block title %}VisDjango - Introductory Example{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  {# insert any extra header code here #}
+{% endblock %}
+
+{% block content %}
+  <div id="svg-shapes">
+    <svg width="800" height="200">
+      <rect x="1" y="1" width="798" height="198" fill="none" stroke="blue" stroke-width="2" />
+      <text x="55" y="40" font-family="Verdana" font-size="30">Circle</text>
+      <circle cx="100" cy="120" r="50" fill="purple" />
+
+      <text x="300" y="40" font-size="30">Rectangle</text>
+      <rect x="310" y="70" width="120" height="100" fill="blue" />
+
+      <text x="600" y="30" font-size="30">Triangle</text>
+      <text x="610" y="50" font-size="20">(polygon)</text>
+      <polygon points="650,70 750,170 550,170"  fill="red" />
+    </svg>
+  </div>
+
+  <div class="code-section">
+    <h1>The code</h1>
+    <pre class="prettyprint">
+
+    &lt;svg width="800" height="200"&gt;
+      &lt;-- Draw the box around the shapes --&gt;
+      &lt;rect x="1" y="1" width="798" height="198" fill="none" stroke="blue" stroke-width="2" /&gt;
+
+      &lt;text x="55" y="40" font-family="Verdana" font-size="30"&gt;Circle&lt;/text&gt;
+      &lt;circle cx="100" cy="120" r="50" fill="purple" /&gt;
+
+      &lt;text x="300" y="40" font-size="30"&gt;Rectangle&lt;/text&gt;
+      &lt;rect x="310" y="70" width="120" height="100" fill="blue" /&gt;
+
+      &lt;text x="600" y="30" font-size="30"&gt;Triangle&lt;/text&gt;
+      &lt;text x="610" y="50" font-size="20"&gt;(polygon)&lt;/text&gt;
+      &lt;polygon points="650,70 750,170 550,170"  fill="red" /&gt;
+    </svg>
+    </pre>
+  </div>
+
+  <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      {# TODO: Clean up reference items up #}
+      <li>This page inspired by: <a href="https://www.dashingd3js.com/basic-building-blocks">https://www.dashingd3js.com/basic-building-blocks</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg">The 'svg' element (Moz)</a></li>
+      <li>For more examples, check out the SVG spec shapes section: <a href="http://www.w3.org/TR/SVG/shapes.html">http://www.w3.org/TR/SVG/shapes.html</a></li>
+    </ul>
+    <h2>Further reading</h2>
+      <ul>
+        <li><a href="https://www.dashingd3js.com/svg-basic-shapes-and-d3js">SVG Basic Shapes and D3js</a> (dashingd3js.com)</li>
+      </ul>
+
+  </div>
+
+  <script type="text/javascript">
+    window.onload = function() {
+      prettyPrint();
+    }
+  </script>
+{% endblock %}

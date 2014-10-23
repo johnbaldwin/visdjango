@@ -1,0 +1,35 @@
+{% extends 'nvd3/base.html' %}
+{% load staticfiles %}
+{% block title %}NVD3 Pie chart{% endblock %}
+{% block extrahead %}
+  {{ block.super }}
+  <script src="{% static 'nvd3/js/piechart.js' %}"></script>
+{% endblock %}
+
+{%  block content %}
+  <div class="page-header">
+    <h1>Pie charts with NVD3</h1>
+  </div>
+
+
+    <p>For demonstration purposes only. <em>Friends don't let friends use pie charts</em></p>
+    <div class="span9">
+  <div id="chart1">
+    <svg style="height:500px;width:400px"></svg>
+  </div>
+
+  <div id="chart2">
+    <svg style="height:500px;width:400px"></svg>
+  </div>
+
+    </div>
+      <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      <li><a href="http://nvd3.org/examples/pie.html">http://nvd3.org/examples/pie.html</a> (Source for our example)</li>
+      <li><a href="http://bl.ocks.org/mbostock/3887235">http://bl.ocks.org/mbostock/3887235</a> (Pie chart)</li>
+      <li><a href="http://bl.ocks.org/mbostock/3887193">http://bl.ocks.org/mbostock/3887193</a> (Donut chart)</li>
+    </ul>
+  </div>
+
+{% endblock %}

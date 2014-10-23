@@ -1,0 +1,14 @@
+{# D3 Index page #}
+{% extends 'visdjango/base.html' %}
+{% load staticfiles %}
+{% block title %}VisDjango - Introductory Examples{% endblock %}
+
+{%  block content %}
+{# TODO: layout the demos #}
+  <ul>
+  <li><a href="{% url 'intro-svg-shapes' %}">Example 1 - SVG Shapes</a></li>
+  <li><a href="{% url 'intro-d3-selection' %}">Example 2 - D3 Selection</a></li>
+  <li><a href="{% url 'intro-d3-transition' %}">Example 3 - D3 Transition</a></li>
+  <li><a href="{% url 'intro-d3-data-binding' %}">Example 4 - D3 Data Binding</a></li>
+  </ul>
+{% endblock %}

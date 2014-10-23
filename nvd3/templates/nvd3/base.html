@@ -1,0 +1,7 @@
+{% extends 'visdjango/base.html' %}
+{% load staticfiles %}
+{% block extrahead %}
+  <link href="{% static 'nvd3/css/nv.d3.css' %}" rel="stylesheet">
+  <script src="{% static 'd3_v3.4.11/d3.js' %}"></script>
+  <script src="{% static 'nvd3/js/nv.d3.v1.1.15b.js' %}"></script>
+{% endblock %}

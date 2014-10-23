@@ -1,0 +1,38 @@
+
+{# D3 Example 3 page #}
+{% extends 'd3/base.html' %}
+{% load staticfiles %}
+{% block title %}Scatter Plot with D3{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <script src="{% static 'd3/js/scatterplot_2.js' %}"></script>
+  <style>
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .dot {
+      stroke: #000;
+    }
+  </style>
+{% endblock %}
+
+{%  block content %}
+  <div class="page-header">
+    <h1>Scatterplot with D3 <small>(using external data source)</small></h1>
+  </div>
+
+  <div id="scatterplot"></div>
+
+    <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      <li>Source: <a href="http://bl.ocks.org/mbostock/3887118">bl.ocks.org/mbostock/3887118</a></li>
+    </ul>
+  </div>
+{% endblock %}

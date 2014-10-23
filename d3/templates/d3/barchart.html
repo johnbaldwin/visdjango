@@ -1,0 +1,29 @@
+{# D3 Example Barchart #}
+{% extends 'd3/base.html' %}
+{% load staticfiles %}
+{% block title %}Bar Chart{% endblock %}
+{% block extrahead %}
+  {{ block.super }}
+  <link href="{% static 'd3/css/barchart.css' %}" rel="stylesheet">
+  <script src="{% static 'd3/js/barchart.js' %}"></script>
+{% endblock extrahead %}
+
+{%  block content %}
+
+  <div class="page-header">
+    <h1>Bar Chart with D3</h1>
+  </div>
+
+  {# TODO: Improve bar chart data to make it more interesting #}
+  {# Ideas: Most popular websites, Meetup stats, programming language popularity #}
+
+  <div id="barchart"></div>
+
+  <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      <li>Example adapted from:
+        <a href="http://bl.ocks.org/mbostock/3885304">http://bl.ocks.org/mbostock/3885304</a></li>
+    </ul>
+  </div>
+{% endblock %}

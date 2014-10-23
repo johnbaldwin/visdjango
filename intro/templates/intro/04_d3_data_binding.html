@@ -1,0 +1,216 @@
+
+{% extends 'visdjango/base.html' %}
+{% load staticfiles %}
+{% block title %}VisDjango - Introductory Example{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <style>
+
+
+
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+
+
+    div.example{
+    background-color: #dd9;
+    margin: 5px;
+    font-size: 25px;
+    color: #007;
+    padding: 10px;
+    width: 100px;
+    }
+
+
+  .chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+  </style>
+    <script src="{% static 'd3_v3.4.11/d3.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+  <h1 class="demo-header">This example demonstrates data binding in D3</h1>
+<div>
+    <input id="values_a" type="button" value="Value set A" onclick="go_values_a();" />
+    <input id="values_b" type="button" value="Value set B" onclick="go_values_b();" />
+</div>
+<div>
+    <svg class="chart"></svg>
+</div>
+
+
+    <script type="text/javascript">
+
+      var data_1 = [2, 4, 8, 15, 16, 23, 42, 52];
+
+      var data_2 = [1,1,2,3,5,8,13,21];
+
+      var go_values_a = function() {
+        update_barchart(data_1,1000);
+      }
+      var go_values_b = function() {
+        update_barchart(data_2,1000);
+      }
+
+      var render_barchart = function (data, transition_time) {
+
+        console.log("render_barchart called with time" + transition_time);
+
+        transition_time = typeof transition_time !== 'undefined' ? transition_time : 100;
+
+        var width = 420,
+            barHeight = 20;
+
+        var x = d3.scale.linear()
+            .domain([0, d3.max(data)])
+            .range([0, width]);
+
+        var chart = d3.select(".chart")
+            .attr("width", width)
+            .attr("height", barHeight * data.length);
+
+        var bar = chart.selectAll("g")
+            .data(data)
+            .enter().append("g")
+            .attr("transform", function (d, i) {
+              return "translate(0," + i * barHeight + ")";
+            });
+
+        bar.append("rect")
+            .attr("width", x)
+            .attr("height", barHeight - 1);
+
+        bar.append("text")
+            .attr("x", function (d) {
+              return x(d) - 3;
+            })
+            .attr("y", barHeight / 2)
+            .attr("dy", ".35em")
+            .text(function (d) {
+              return d;
+            });
+      }
+
+      var update_barchart = function(data, transition_time) {
+
+        console.log("updating barchart...");
+        var width = 420;
+        var x = d3.scale.linear()
+            .domain([0, d3.max(data)])
+            .range([0, width]);
+
+
+        var chart = d3.select(".chart")
+        var update_bar = chart.selectAll("rect")
+            .data(data).transition().duration(transition_time)
+            .attr("width", function(d) {
+              return x(d);
+            });
+
+        var update_text = chart.selectAll("text")
+            .data(data).transition().duration(transition_time)
+            .attr("x", function (d) {
+              return x(d) -3;
+            })
+            .text(function (d) {
+              return d;
+            });
+
+      }
+
+      window.onload = function() {
+        prettyPrint();
+        render_barchart(data_1);
+      }
+    </script>
+
+
+  <div class="code-section">
+    <h1>data binding example code</h1>
+    <pre class="prettyprint">
+
+  // First data set
+  var data_1 = [2, 4, 8, 15, 16, 23, 42, 52];
+
+  // Second data set
+  var data_2 = [1,1,2,3,5,8,13,21];
+
+  // Draw our initial chart
+  var render_barchart = function (data, transition_time) {
+
+    console.log("render_barchart called with time" + transition_time);
+    transition_time = typeof transition_time !== 'undefined' ? transition_time : 100;
+
+    var width = 420, barHeight = 20;
+
+    var x = d3.scale.linear().domain([0, d3.max(data)]).range([0, width]);
+
+    var chart = d3.select(".chart")
+        .attr("width", width)
+        .attr("height", barHeight * data.length);
+
+    var bar = chart.selectAll("g")
+        .data(data)
+        .enter().append("g")
+        .attr("transform", function (d, i) {
+          return "translate(0," + i * barHeight + ")";
+        });
+
+    bar.append("rect").attr("width", x).attr("height", barHeight - 1);
+
+    bar.append("text")
+        .attr("x", function (d) { return x(d) - 3; })
+        .attr("y", barHeight / 2)
+        .attr("dy", ".35em")
+        .text(function (d) { return d; });
+  }
+  // Update our chart
+  var update_barchart = function(data, transition_time) {
+
+    console.log("updating barchart...");
+
+    var width = 420;
+    var x = d3.scale.linear().domain([0, d3.max(data)]).range([0, width]);
+
+    var chart = d3.select(".chart")
+    var update_bar = chart.selectAll("rect")
+        .data(data).transition().duration(transition_time)
+        .attr("width", function(d) { return x(d); });
+
+    var update_text = chart.selectAll("text")
+        .data(data).transition().duration(transition_time)
+        .attr("x", function (d) { return x(d) -3; })
+        .text(function (d) { return d; });
+  }
+
+    </pre>
+  </div>
+  <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      <li>Adapted from <a href="http://bost.ocks.org/mike/bar/2/">Let's Make a Bar Chart, II</a> (bost.ocks.org)</li>
+      <li><a href="http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_updating_data">Chapter 9. Updates, Transitions, and Motion</a> of <span class="book-title">Interactive Data Visualization for the Web</span></span></li>
+      <li><a href="https://www.dashingd3js.com/binding-data-to-dom-elements">Binding Data to DOM Elements</a> (dashingd3js.com)</li>
+    </ul>
+  </div>
+
+
+
+    {% endblock %}

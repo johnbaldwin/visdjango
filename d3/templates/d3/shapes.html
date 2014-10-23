@@ -1,0 +1,24 @@
+{# D3 demo 01 page #}
+{% extends 'd3/base.html' %}
+{% load staticfiles %}
+{% block title %}VisDjango D3.js Shapes{% endblock %}
+{% block extrahead %}
+  {{ block.super }}
+  <script src="{% static 'd3/js/shapes.js' %}"></script>
+{% endblock %}
+
+{%  block content %}
+{# TODO: layout the demos #}
+  <div class="page-header">
+    <h1>Shapes with D3</h1>
+  </div>
+
+  <div id="shapes_circles"></div>
+
+  <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      <li>Source: <a href="https://www.dashingd3js.com/using-json-to-simplify-code">Using JSON to Simplify Code</a> (dashingd3js.com)</li>
+    </ul>
+  </div>
+{% endblock %}

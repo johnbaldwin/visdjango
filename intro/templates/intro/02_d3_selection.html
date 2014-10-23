@@ -1,0 +1,63 @@
+
+{% extends 'visdjango/base.html' %}
+{% load staticfiles %}
+{% block title %}VisDjango - Introductory Example{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <style>
+
+    div.example {
+      background-color: #000000;
+      margin: 5px;
+      font-size: 20px;
+      color: #f2dede;
+      padding: 10px;
+      width: 300px;
+    }
+
+  </style>
+  <script src="{% static 'd3_v3.4.11/d3.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="demo-header">This example demonstrates selection in D3</h1>
+
+  <input id="red_example" type="button" value="Red background" onclick="go_red();" />
+  <input id="blue_example" type="button" value="Black text with blue background" onclick="go_blue();" />
+  <input id="reload_page" type="button" value="Reload page" onclick="window.location.reload(false);" />
+
+  <div class="example">This is our first div</div>
+  <div class="example">This is our second div</div>
+
+  <script type="text/javascript">
+    var go_red = function() {
+      d3.selectAll("div.example").style("background-color","red");
+    }
+    var go_blue = function() {
+      d3.selectAll("div.example").style("background-color","lightblue").style("color","black");
+    }
+
+
+    window.onload = function() {
+      prettyPrint();
+    }
+  </script>
+
+  <div class="code-section">
+    <h1>Selection statement</h1>
+    <pre class="prettyprint">
+      // Basic selection example
+      d3.selectAll("div.example").style("background-color","red");
+      // Chained styles
+      d3.selectAll("div.example").style("background-color","lightblue").style("color","black");
+    </pre>
+  </div>
+  <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      <li><a href="https://github.com/mbostock/d3/wiki/Selections">D3 wiki - Selections</a> (github.com)</li>
+      <li><a href="http://bost.ocks.org/mike/selection/">How Selection Works</a> (bost.ocks.org)</li>
+    </ul>
+  </div>
+{% endblock %}

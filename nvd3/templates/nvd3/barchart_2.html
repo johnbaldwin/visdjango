@@ -1,0 +1,60 @@
+{% extends 'nvd3/base.html' %}
+{% load staticfiles %}
+{% block title %}NVD3 Bar Chart{% endblock %}
+{% block extrahead %}
+  {{ block.super }}
+{% endblock %}
+
+{%  block content %}
+
+<script>
+
+  function render_barchart() {
+
+    d3.json("/nvd3/barchart_data/", function(error, data) {
+      console.log("our returned data:");
+      console.log(data);
+      nv.addGraph(function() {
+        var chart = nv.models.discreteBarChart()
+          .x(function(d) { return d.label })    //Specify the data accessors.
+          .y(function(d) { return d.value })
+          .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
+          .tooltips(false)        //Don't show tooltips
+          .showValues(true)       //...instead, show the bar value right on top of each bar.
+          .transitionDuration(350)
+          ;
+
+        d3.select('#chart svg')
+          .datum(data)
+          .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+      });
+    });
+  }
+
+  $(function() {
+      render_barchart();
+  });
+
+</script>
+
+  <div class="page-header">
+    <h1>Bar chart with NVD3 <small>(using external JSON data)</small></h1>
+  </div>
+
+  <div id="chart">
+    <svg style="height:500px;width:800px"></svg>
+  </div>
+
+  <div class="references">
+    <h1>Credits and Further Reading</h1>
+    <ul>
+      <li>Source: <a href="http://nvd3.org/examples/discreteBar.html">http://nvd3.org/examples/discreteBar.html</a></li>
+      <li><a href="http://bl.ocks.org/mbostock/3887118">http://bl.ocks.org/mbostock/3887118</a></li>
+    </ul>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{# D3 Index page #}
+{% extends 'd3/base.html' %}
+{% load staticfiles %}
+{% block title %}VisDjango D3.js Examples{% endblock %}
+
+{%  block content %}
+
+    <script type="text/javascript">
+
+      $(window).load(function() {
+        console.log("window load occured");
+      });
+
+      $(document).ready(function() {
+        console.log("document ready occured");
+      });
+
+    </script>
+
+{# TODO: layout the demos #}
+  <ul>
+    <li><a href="{% url 'd3-shapes' %}">Example 1 - Shapes</a></li>
+    <li><a href="{% url 'd3-barchart' %}">Example 2 - Bar chart</a></li>
+    <li><a href="{% url 'd3-scatterplot' %}">Example 3 - Scatterplot</a></li>
+    <li><a href="{% url 'd3-scatterplot-2' %}">Example 4 - Scatterplot 2</a></li>
+  </ul>
+{% endblock %}
